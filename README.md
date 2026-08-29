@@ -119,7 +119,7 @@ mason add module --git-url https://github.com/Beshlaw/beshlaw_mason.git --git-pa
 ### Generate a module
 
 ```bash
-mason make module
+mason make module --on-conflict overwrite
 ```
 
 Mason will ask for the module name.
