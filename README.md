@@ -68,7 +68,7 @@ mason add flutter_project --git-url https://github.com/Beshlaw/beshlaw_mason.git
 ### Generate
 
 ```bash
-mason make flutter_project
+mason make flutter_project --on-conflict overwrite
 ```
 
 The generated structure will follow the template defined in the brick.
