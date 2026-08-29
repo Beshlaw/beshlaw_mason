@@ -1,0 +1,5 @@
+bricks:
+  flutter_project:
+    path: flutter_project
+  module:
+    path: module
