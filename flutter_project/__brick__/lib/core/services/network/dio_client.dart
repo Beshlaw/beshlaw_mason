@@ -24,7 +24,7 @@ class DioClient {
     dio.interceptors.add(
       InterceptorsWrapper(
         onRequest: (options, handler) {
-          String? token = AppPreferences().getData(AppConstants.token);
+          String? token = AppPreferences.getData(AppConstants.token);
           if (token != null && token.isNotEmpty) {
             options.headers["Authorization"] = "Bearer $token";
           }

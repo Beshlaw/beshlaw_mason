@@ -1,5 +1,5 @@
-import 'package:scope_digital/core/services/local/database/sql_database.dart';
-import 'package:scope_digital/core/services/local/tables/sql_user_model.dart';
+import '../database/sql_database.dart';
+import '../tables/sql_user_model.dart';
 import 'package:sqflite/sqflite.dart';
 
 class UserDao {

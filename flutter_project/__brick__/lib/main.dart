@@ -2,14 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:{{name.snakeCase()}}/core/constants/app_sizes.dart';
+import 'package:{{name.snakeCase()}}/core/constants/helpers.dart';
 import 'package:{{name.snakeCase()}}/core/routing/app_router.dart';
-import 'package:{{name.snakeCase()}}/core/theme/theme_data.dart';
 import 'package:{{name.snakeCase()}}/generated/l10n.dart';
 import 'package:{{name.snakeCase()}}/splash_module/presentation/screens/splash_screen.dart';
+import 'package:{{name.snakeCase()}}/core/services/service_locator.dart';
+import 'package:{{name.snakeCase()}}/core/theme/themes/light_theme.dart';
+import 'package:{{name.snakeCase()}}/core/theme/themes/dark_theme.dart';
+import 'package:{{name.snakeCase()}}/core/utils/app_shared_preferences.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await AppPreferences().init();
+  await AppPreferences.init();
   setupServiceLocator();
   runApp(MyApp());
 }
@@ -33,7 +37,9 @@ class MyApp extends StatelessWidget {
         title: 'Flutter Demo',
         initialRoute: SplashScreen.routeName,
         onGenerateRoute: AppRouter().generateRoute,
-        theme: getAppTheme(context),
+        theme: lightTheme(context),
+        darkTheme: darkTheme(context),
+        themeMode: ThemeController.themeNotifier.value,
       ),
     );
   }

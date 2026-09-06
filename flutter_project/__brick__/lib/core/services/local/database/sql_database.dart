@@ -1,6 +1,6 @@
 import 'dart:async';
 import 'package:path/path.dart';
-import 'package:scope_digital/core/services/local/constant/local_d_b_constant.dart';
+import '../constant/local_d_b_constant.dart';
 import 'package:sqflite/sqflite.dart';
 
 class SqlDatabase {

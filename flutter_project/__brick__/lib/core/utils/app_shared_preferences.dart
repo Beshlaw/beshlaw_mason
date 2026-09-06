@@ -4,20 +4,13 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'dart:convert';
 
 class AppPreferences {
-  static final AppPreferences _instance = AppPreferences._internal();
-  late SharedPreferences _prefs;
+  static late SharedPreferences _prefs;
 
-  factory AppPreferences() {
-    return _instance;
-  }
-
-  AppPreferences._internal();
-
-  Future<void> init() async {
+  static Future<void> init() async {
     _prefs = await SharedPreferences.getInstance();
   }
 
-  Future<void> setData(String key, dynamic value) async {
+  static Future<void> setData(String key, dynamic value) async {
     if (value is String) {
       await _prefs.setString(key, value);
     } else if (value is int) {
@@ -33,15 +26,15 @@ class AppPreferences {
     }
   }
 
-  dynamic getData(String key) {
+  static dynamic getData(String key) {
     return _prefs.get(key);
   }
 
-  Future<void> removeData(String key) async {
+  static Future<void> removeData(String key) async {
     await _prefs.remove(key);
   }
 
-  Future<void> saveModel<T>(
+  static Future<void> saveModel<T>(
     String key,
     T model,
     Map<String, dynamic> Function(T) toJson,
@@ -50,7 +43,7 @@ class AppPreferences {
     await _prefs.setString(key, jsonString);
   }
 
-  T? getModel<T>(String key, T Function(Map<String, dynamic>) fromJson) {
+  static T? getModel<T>(String key, T Function(Map<String, dynamic>) fromJson) {
     final String? jsonString = _prefs.getString(key);
     if (jsonString != null) {
       final Map<String, dynamic> jsonMap = jsonDecode(jsonString);
@@ -59,7 +52,7 @@ class AppPreferences {
     return null;
   }
 
-  Future<void> saveModels<T>(
+  static Future<void> saveModels<T>(
     String key,
     List<T> models,
     Map<String, dynamic> Function(T) toJson,
@@ -70,7 +63,10 @@ class AppPreferences {
     await _prefs.setStringList(key, jsonList);
   }
 
-  List<T> getModels<T>(String key, T Function(Map<String, dynamic>) fromJson) {
+  static List<T> getModels<T>(
+    String key,
+    T Function(Map<String, dynamic>) fromJson,
+  ) {
     final List<String>? jsonList = _prefs.getStringList(key);
     if (jsonList != null) {
       return jsonList.map((json) => fromJson(jsonDecode(json))).toList();
@@ -78,7 +74,7 @@ class AppPreferences {
     return [];
   }
 
-  Future<void> clearExceptCredentials() async {
+  static Future<void> clearExceptCredentials() async {
     String? savedEmail = _prefs.getString('saved_email');
     String? savedPassword = _prefs.getString('saved_password');
     bool? rememberMe = _prefs.getBool('remember_me');
@@ -91,7 +87,11 @@ class AppPreferences {
     if (rememberMe != null) await _prefs.setBool('remember_me', rememberMe);
   }
 
-  bool isLoggedInUser() {
+  static bool isLoggedInUser() {
     return _prefs.containsKey("userModel");
+  }
+
+  static bool isDarkMode() {
+    return _prefs.getBool("isDarkMode") ?? false;
   }
 }
