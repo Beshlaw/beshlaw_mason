@@ -73,6 +73,7 @@ class AppWidths {
 }
 
 class AppRadius {
+  static double as4 = 4.0.r;
   static double as6 = 6.0.r;
   static double as8 = 8.0.r;
   static double as10 = 10.0.r;

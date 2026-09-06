@@ -26,34 +26,38 @@ class FontSizeManager {
 }
 
 class StyleManager {
-  static TextStyle _getStyle(double fontSize, FontWeight fontWeight) {
+  static TextStyle _getStyle(
+    double fontSize,
+    FontWeight fontWeight,
+    Color color,
+  ) {
     final isEnglish =
         true; // Replace with your logic to determine the current language
     return TextStyle(
       fontFamily: isEnglish ? FontFamilyManager.inter : FontFamilyManager.cairo,
       fontSize: fontSize,
       fontWeight: fontWeight,
-      color: kBlack,
+      color: color,
     );
   }
 
-  static TextStyle getLightStyle(double fontSize) {
-    return _getStyle(fontSize, FontWeightManager.light);
+  static TextStyle getLightStyle(double fontSize, Color color) {
+    return _getStyle(fontSize, FontWeightManager.light, color);
   }
 
-  static TextStyle getRegularStyle(double fontSize) {
-    return _getStyle(fontSize, FontWeightManager.regular);
+  static TextStyle getRegularStyle(double fontSize, Color color) {
+    return _getStyle(fontSize, FontWeightManager.regular, color);
   }
 
-  static TextStyle getMediumStyle(double fontSize) {
-    return _getStyle(fontSize, FontWeightManager.medium);
+  static TextStyle getMediumStyle(double fontSize, Color color) {
+    return _getStyle(fontSize, FontWeightManager.medium, color);
   }
 
-  static TextStyle getSemiBoldStyle(double fontSize) {
-    return _getStyle(fontSize, FontWeightManager.semiBold);
+  static TextStyle getSemiBoldStyle(double fontSize, Color color) {
+    return _getStyle(fontSize, FontWeightManager.semiBold, color);
   }
 
-  static TextStyle getBoldStyle(double fontSize) {
-    return _getStyle(fontSize, FontWeightManager.bold);
+  static TextStyle getBoldStyle(double fontSize, Color color) {
+    return _getStyle(fontSize, FontWeightManager.bold, color);
   }
 }

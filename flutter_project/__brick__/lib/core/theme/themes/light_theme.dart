@@ -1,4 +1,4 @@
-import '../constants/app_sizes.dart';
+import '../../constants/app_sizes.dart';
 import '/core/constants/colors.dart';
 import '/core/extensions/text_extensions.dart';
 import '/core/theme/font_manager.dart';
