@@ -25,21 +25,24 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return ScreenUtilInit(
       designSize: Size(BaseAppScreenSize.width, BaseAppScreenSize.height),
-      builder: (context, child) => MaterialApp(
-        debugShowCheckedModeBanner: false,
-        localizationsDelegates: [
-          S.delegate,
-          GlobalMaterialLocalizations.delegate,
-          GlobalWidgetsLocalizations.delegate,
-          GlobalCupertinoLocalizations.delegate,
-        ],
-        supportedLocales: S.delegate.supportedLocales,
-        title: 'Flutter Demo',
-        initialRoute: SplashScreen.routeName,
-        onGenerateRoute: AppRouter().generateRoute,
-        theme: lightTheme(context),
-        darkTheme: darkTheme(context),
-        themeMode: ThemeController.themeNotifier.value,
+      builder: (context, child) => ValueListenableBuilder(
+        valueListenable: ThemeController.themeNotifier,
+        builder: (context, value, child) => MaterialApp(
+          debugShowCheckedModeBanner: false,
+          localizationsDelegates: [
+            S.delegate,
+            GlobalMaterialLocalizations.delegate,
+            GlobalWidgetsLocalizations.delegate,
+            GlobalCupertinoLocalizations.delegate,
+          ],
+          supportedLocales: S.delegate.supportedLocales,
+          title: 'Flutter Demo',
+          initialRoute: SplashScreen.routeName,
+          onGenerateRoute: AppRouter().generateRoute,
+          theme: lightTheme(context),
+          darkTheme: darkTheme(context),
+          themeMode: ThemeController.themeNotifier.value,
+        ),
       ),
     );
   }
