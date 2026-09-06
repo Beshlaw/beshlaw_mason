@@ -7,7 +7,10 @@ import 'package:{{name.snakeCase()}}/core/theme/theme_data.dart';
 import 'package:{{name.snakeCase()}}/generated/l10n.dart';
 import 'package:{{name.snakeCase()}}/splash_module/presentation/screens/splash_screen.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await AppPreferences().init();
+  setupServiceLocator();
   runApp(MyApp());
 }
 
